@@ -1,90 +1,66 @@
-import MiniCalendar from "components/calendar/MiniCalendar";
-import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue";
-import TotalSpent from "views/admin/default/components/TotalSpent";
-import PieChartCard from "views/admin/default/components/PieChartCard";
-import { IoMdHome } from "react-icons/io";
-import { IoDocuments } from "react-icons/io5";
-import { MdBarChart, MdDashboard } from "react-icons/md";
-
-import Widget from "components/widget/Widget";
-import CheckTable from "views/admin/default/components/CheckTable";
-import ComplexTable from "views/admin/default/components/ComplexTable";
-import DailyTraffic from "views/admin/default/components/DailyTraffic";
-import TaskCard from "views/admin/default/components/TaskCard";
-import tableDataCheck from "./variables/tableDataCheck";
-import tableDataComplex from "./variables/tableDataComplex";
+import React, { useEffect } from "react";
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4maps from "@amcharts/amcharts4/maps";
+import am4geodata_italyLow from "@amcharts/amcharts4-geodata/italyLow";
+import PieChartCard from "./components/PieChartCard";
+import LineChart from "components/charts/LineChart";
 
 const Dashboard = () => {
+  useEffect(() => {
+    let map = am4core.create("chartdiv", am4maps.MapChart);
+    map.geodata = am4geodata_italyLow;
+    map.projection = new am4maps.projections.Miller();
+
+    let polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
+    polygonSeries.useGeodata = true;
+
+    // Aggiungi marker alle città
+    let imageSeries = map.series.push(new am4maps.MapImageSeries());
+    let imageSeriesTemplate = imageSeries.mapImages.template;
+    let marker = imageSeriesTemplate.createChild(am4core.Circle);
+    marker.radius = 4;
+    marker.fill = am4core.color("#ff0000");
+    imageSeriesTemplate.propertyFields.latitude = "latitude";
+    imageSeriesTemplate.propertyFields.longitude = "longitude";
+    imageSeries.data = [
+      { latitude: 41.9028, longitude: 12.4964 }, // Roma
+      { latitude: 45.4642, longitude: 9.19 }, // Milano
+      { latitude: 40.8518, longitude: 14.2681 }, // Napoli
+      { latitude: 38.1157, longitude: 13.3615 }, // Palermo
+    ];
+
+    // Connetti Roma e Milano con una linea
+    // let lineSeries = map.series.push(new am4maps.MapLineSeries());
+    // lineSeries.data = [
+    //   {
+    //     multiGeoLine: [
+    //       [
+    //         { latitude: 41.9028, longitude: 12.4964 }, // Roma
+    //         { latitude: 45.4642, longitude: 9.19 }, // Milano
+    //       ],
+    //     ],
+    //   },
+    // ];
+
+    return () => {
+      map.dispose();
+    };
+  }, []);
+
   return (
-    <div>
-      {/* Card widget */}
+    <div className="mt-10 flex h-screen flex-col items-center">
+      <div className="flex h-full w-full max-w-screen-xl justify-between">
+        {/* Mappa dell'Italia per restringierla leggermentew-1/2*/}
+        <div id="chartdiv" className="h-screen w-full"></div>
 
-      <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
-        <Widget
-          icon={<MdBarChart className="h-7 w-7" />}
-          title={"Earnings"}
-          subtitle={"$340.5"}
-        />
-        <Widget
-          icon={<IoDocuments className="h-6 w-6" />}
-          title={"Spend this month"}
-          subtitle={"$642.39"}
-        />
-        <Widget
-          icon={<MdBarChart className="h-7 w-7" />}
-          title={"Sales"}
-          subtitle={"$574.34"}
-        />
-        <Widget
-          icon={<MdDashboard className="h-6 w-6" />}
-          title={"Your Balance"}
-          subtitle={"$1,000"}
-        />
-        <Widget
-          icon={<MdBarChart className="h-7 w-7" />}
-          title={"New Tasks"}
-          subtitle={"145"}
-        />
-        <Widget
-          icon={<IoMdHome className="h-6 w-6" />}
-          title={"Total Projects"}
-          subtitle={"$2433"}
-        />
-      </div>
-
-      {/* Charts */}
-
-      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
-        <TotalSpent />
-        <WeeklyRevenue />
-      </div>
-
-      {/* Tables & Charts */}
-
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
-        {/* Check Table */}
-        <div>
-          <CheckTable tableData={tableDataCheck} />
-        </div>
-
-        {/* Traffic chart & Pie Chart */}
-
-        <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <DailyTraffic />
-          <PieChartCard />
-        </div>
-
-        {/* Complex Table , Task & Calendar */}
-
-        <ComplexTable tableData={tableDataComplex} />
-
-        {/* Task chart & Calendar */}
-
-        <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <TaskCard />
-          <div className="grid grid-cols-1 rounded-[20px]">
-            <MiniCalendar />
+        {/* Grafici */}
+        <div className="justify-right flex h-screen w-[300px] flex-col">
+          {/* Grafico a torta */}
+          <div className="h-[245px]">
+            <PieChartCard />
           </div>
+
+          {/* Grafico a linee */}
         </div>
       </div>
     </div>
