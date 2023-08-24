@@ -3,6 +3,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_italyLow from "@amcharts/amcharts4-geodata/italyLow";
 import PieChartCard from "./components/PieChartCard";
+import TooltipContent from "./components/Logistic/TooltipContent";
 
 // Dati per i marker delle città
 const cityData = [
@@ -28,7 +29,7 @@ const initializeMap = () => {
   imageSeriesTemplate.propertyFields.latitude = "latitude";
   imageSeriesTemplate.propertyFields.longitude = "longitude";
 
-  marker.tooltipText = "{city}";
+  marker.tooltipHTML = "<h1>{city}<h1></br>Questo è il resto del testo";
 
   marker.tooltipY = -10; // Posizione del tooltip rispetto al marker
   // Utilizza l'array di dati esterno per i marker delle città
