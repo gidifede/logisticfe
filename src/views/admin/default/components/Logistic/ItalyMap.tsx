@@ -35,24 +35,20 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity }) => {
     let imageSeries = map.series.push(new am4maps.MapImageSeries());
     let imageSeriesTemplate = imageSeries.mapImages.template;
     let marker = imageSeriesTemplate.createChild(am4core.Circle);
-    marker.radius = 4;
+    marker.radius = 6;
     marker.fill = am4core.color("#4318FFFF");
-    let JSONData = {
-      value: 100,
-      config: {
-        fill: "#F00",
-      },
-    };
-
+   
     marker.tooltipText = "{city}";
     imageSeriesTemplate.propertyFields.latitude = "latitude";
     imageSeriesTemplate.propertyFields.longitude = "longitude";
 
     marker.events.on("hit", function (event) {
       const clickedCityData = event.target.dataItem.dataContext;
-      console.log(marker);
+      console.log(clickedCityData);
+      console.log((clickedCityData as any).city);
+
       console.log(event);
-      setSelectedCity("Nome del centro cliccato!!");
+      setSelectedCity( (clickedCityData as any).city );
       // if (clickedCityData && clickedCityData.city) {
       //   setSelectedCity(clickedCityData.city);
       // }

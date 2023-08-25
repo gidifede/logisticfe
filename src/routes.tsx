@@ -19,7 +19,7 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
-import LogisticDashboard from "views/admin/logisticDashboard";
+
 
 const routes = [
   {

@@ -10,21 +10,28 @@ const Dashboard = () => {
     setSelectedCity(newMessage);
   };
   return (
-    <div className="mt-10 flex h-screen items-start">
-      <div className="w-[200px] bg-gray-200 p-4">
-        {/* Placeholder per il menu */}
-        <p>Filters</p>
-      </div>
-      <div className="flex max-w-screen-xl flex-grow flex-col justify-center">
-        <ItalyMap setSelectedCity={handleChildEvent} />
-      </div>
-      <div className="flex w-full flex-col md:w-[300px]">
-        <>
-          <LogisticCard message={selectedCity} />
-          <PieChartCard />
-        </>
-      </div>
+    
+<div className="mt-10 flex h-screen items-start">
+  <div className="w-[200px] bg-gray-200 p-4">
+    {/* Placeholder per il menu */}
+    <p>Filters</p>
+  </div>
+
+  <div className="flex-grow">
+    <ItalyMap setSelectedCity={handleChildEvent} />
+  </div>
+  
+  <div className="flex w-[300px] flex-col items-end">
+    <div className="self-end mb-10">
+      <LogisticCard message={selectedCity} />
     </div>
+    <div className="self-end">
+      <PieChartCard />
+    </div>
+  </div>
+</div>
+
+  
   );
 };
 
