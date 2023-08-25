@@ -2,13 +2,17 @@ import PieChart from "components/charts/PieChart";
 import { pieChartData, pieChartOptions } from "variables/charts";
 import Card from "components/card";
 
-const LogisticCard = () => {
+interface LogisticCardProps {
+  message: string;
+}
+
+const LogisticCard: React.FC<LogisticCardProps> = ({ message }) => {
   return (
     <Card extra="rounded-[20px] p-3">
       <div className="flex flex-row justify-between px-3 pt-2">
         <div>
           <h4 className="text-lg font-bold text-navy-700 dark:text-white">
-            Nome città
+            {message}
           </h4>
         </div>
 

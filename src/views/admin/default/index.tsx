@@ -19,16 +19,10 @@ const Dashboard = () => {
         <ItalyMap setSelectedCity={handleChildEvent} />
       </div>
       <div className="flex w-full flex-col md:w-[300px]">
-        {selectedCity ? (
-          <div className="placeholder">
-            <h2>{selectedCity}</h2>
-          </div>
-        ) : (
-          <>
-            <LogisticCard />
-            <PieChartCard />
-          </>
-        )}
+        <>
+          <LogisticCard message={selectedCity} />
+          <PieChartCard />
+        </>
       </div>
     </div>
   );
