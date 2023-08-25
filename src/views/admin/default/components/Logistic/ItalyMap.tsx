@@ -12,7 +12,11 @@ const cityData = [
   { latitude: 38.1157, longitude: 13.3615, city: "Palermo" }, // Palermo
 ];
 
-const ItalyMap = () => {
+interface ItalyMapProps {
+  setSelectedCity: (message: string) => void;
+}
+
+const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity }) => {
   useEffect(() => {
     const map = initializeMap();
     return () => {
@@ -33,8 +37,26 @@ const ItalyMap = () => {
     let marker = imageSeriesTemplate.createChild(am4core.Circle);
     marker.radius = 4;
     marker.fill = am4core.color("#4318FFFF");
+    let JSONData = {
+      value: 100,
+      config: {
+        fill: "#F00",
+      },
+    };
+
+    marker.tooltipText = "{city}";
     imageSeriesTemplate.propertyFields.latitude = "latitude";
     imageSeriesTemplate.propertyFields.longitude = "longitude";
+
+    marker.events.on("hit", function (event) {
+      const clickedCityData = event.target.dataItem.dataContext;
+      console.log(marker);
+      console.log(event);
+      setSelectedCity("Nome del centro cliccato!!");
+      // if (clickedCityData && clickedCityData.city) {
+      //   setSelectedCity(clickedCityData.city);
+      // }
+    });
 
     imageSeries.data = cityData;
 
