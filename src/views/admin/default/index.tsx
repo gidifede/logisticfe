@@ -29,7 +29,15 @@ const initializeMap = () => {
   imageSeriesTemplate.propertyFields.latitude = "latitude";
   imageSeriesTemplate.propertyFields.longitude = "longitude";
 
-  marker.tooltipHTML = "<h1>{city}<h1></br>Questo è il resto del testo";
+  marker.tooltipHTML = `
+  <div class="bg-white text-black p-4 rounded shadow-lg">
+    <h1 class="text-xl font-bold">{city}</h1>
+    <p>Questo è il resto del testo</p>
+    <a href="https://it.wikipedia.org/wiki/{city}" target="_blank" class="text-blue-500">Maggiori informazioni</a>
+    <img src="https://www.example.com/{city}.jpg" alt="{city}" class="w-16 h-16 mt-2">
+    <button class="bg-blue-500 text-white p-2 mt-2 rounded" onclick="window.location.href='https://www.example.com/{city}'">Vai alla pagina</button>
+  </div>
+`;
 
   marker.tooltipY = -10; // Posizione del tooltip rispetto al marker
   // Utilizza l'array di dati esterno per i marker delle città
