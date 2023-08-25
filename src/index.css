@@ -13,6 +13,13 @@
 	}
 }
 
+.custom-tooltip {
+	position: absolute;
+	display: none;
+	z-index: 1000; /* Assicura che il tooltip sia sopra gli altri elementi */
+	/* ... altri stili del tooltip ... */
+  }
+
 input.defaultCheckbox::before {
 	content: url(../src/assets/svg/checked.svg); 
 	color: white;
