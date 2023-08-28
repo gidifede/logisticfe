@@ -37,7 +37,7 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity }) => {
     let marker = imageSeriesTemplate.createChild(am4core.Circle);
     marker.radius = 6;
     marker.fill = am4core.color("#4318FFFF");
-   
+
     marker.tooltipText = "{city}";
     imageSeriesTemplate.propertyFields.latitude = "latitude";
     imageSeriesTemplate.propertyFields.longitude = "longitude";
@@ -48,7 +48,7 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity }) => {
       console.log((clickedCityData as any).city);
 
       console.log(event);
-      setSelectedCity( (clickedCityData as any).city );
+      setSelectedCity((clickedCityData as any).city);
       // if (clickedCityData && clickedCityData.city) {
       //   setSelectedCity(clickedCityData.city);
       // }
