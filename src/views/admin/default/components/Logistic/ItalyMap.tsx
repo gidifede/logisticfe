@@ -38,7 +38,7 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity }) => {
     marker.radius = 6;
     marker.fill = am4core.color("#4318FFFF");
 
-    marker.tooltipText = "{city}";
+    marker.tooltipHTML = "{city}";
     imageSeriesTemplate.propertyFields.latitude = "latitude";
     imageSeriesTemplate.propertyFields.longitude = "longitude";
 
