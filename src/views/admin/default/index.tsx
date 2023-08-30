@@ -11,8 +11,14 @@ const Dashboard = () => {
   const [selectedCity, setSelectedCity] = useState(null);
 
   const [locationFlagSelected, setLocationFlag] = useState(true);
+  const [sdaFlagSelected, setSdaFlag] = useState(false);
+  const [FlagSelected, setFlag] = useState(false);
+  
+
+  
   const [clicked, setClicked] = useState(false);
   const [placeFilterSelected, setPlaceFilterSelected] = useState(true);
+
 
   const handleChildEvent = (newMessage: string) => {
     setSelectedCity(newMessage);
@@ -21,6 +27,15 @@ const Dashboard = () => {
   const handleLocationFlagSelect = () => {
     setLocationFlag(!locationFlagSelected);
   };
+
+  const handleSdaFlagSelect = () => {
+    setSdaFlag(!sdaFlagSelected);
+  };
+
+  const handlFlagSelect = () => {
+    setFlag(!FlagSelected);
+  };
+
 
   return (
     <div className="mt-10 flex h-screen items-start">
@@ -33,20 +48,31 @@ const Dashboard = () => {
           />
           <LogisticFilter
             icon={<MdDirections className={`h-7 w-7`} />}
-            clicked={false}
-            onClick={() => {}}
+            clicked={sdaFlagSelected}
+            onClick={handleSdaFlagSelect}
           />
           <LogisticFilter
             icon={<MdDirectionsCar className={`h-7 w-7 `} />}
-            clicked={false}
-            onClick={() => {}}
+            clicked={FlagSelected}
+            onClick={handlFlagSelect}
           />
         </div>
       </div>
 
+
       <div className="flex-grow">
-        <ItalyMap setSelectedCity={handleChildEvent} />
+        <ItalyMap
+          setSelectedCity={handleChildEvent}
+          showAllMarkers={locationFlagSelected}
+        />
+        <button onClick={() => setLocationFlag(!locationFlagSelected)}>
+          Location Flag
+        </button>
       </div>
+     
+
+
+
 
       <div className="flex w-[300px] flex-col items-end">
         <div className="mb-10 w-[300px] self-end">

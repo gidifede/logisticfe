@@ -12,19 +12,25 @@ const cityData = [
   { latitude: 38.1157, longitude: 13.3615, city: "Palermo" }, // Palermo
 ];
 
+
+
+//dati per hub sda
+
+
 interface ItalyMapProps {
   setSelectedCity: (message: string) => void;
+  showAllMarkers: boolean;
 }
 
-const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity }) => {
+const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showAllMarkers }) => {
   useEffect(() => {
-    const map = initializeMap();
+    const map = initializeMap(showAllMarkers); // Passa showAllMarkers a initializeMap
     return () => {
       map.dispose();
     };
-  }, []);
+  }, [showAllMarkers]); // Aggiungi showAllMarkers come dipendenza dell'effetto
 
-  const initializeMap = () => {
+  const initializeMap = (showAllMarkers: boolean) => {
     let map = am4core.create("chartdiv", am4maps.MapChart);
     map.geodata = am4geodata_italyLow;
     map.projection = new am4maps.projections.Miller();
@@ -44,17 +50,14 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity }) => {
 
     marker.events.on("hit", function (event) {
       const clickedCityData = event.target.dataItem.dataContext;
-      console.log(clickedCityData);
-      console.log((clickedCityData as any).city);
-
-      console.log(event);
       setSelectedCity((clickedCityData as any).city);
-      // if (clickedCityData && clickedCityData.city) {
-      //   setSelectedCity(clickedCityData.city);
-      // }
+
     });
 
-    imageSeries.data = cityData;
+    if (showAllMarkers) {
+      imageSeries.data = cityData;
+    }
+  
 
     return map;
   };
@@ -63,3 +66,8 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity }) => {
 };
 
 export default ItalyMap;
+
+
+
+
+
