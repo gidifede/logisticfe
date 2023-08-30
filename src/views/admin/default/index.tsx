@@ -64,14 +64,15 @@ const Dashboard = () => {
         <ItalyMap
           setSelectedCity={handleChildEvent}
           showAllMarkers={locationFlagSelected}
+          sdaFlagSelected={sdaFlagSelected}
         />
         <button onClick={() => setLocationFlag(!locationFlagSelected)}>
           Location Flag
         </button>
+        <button onClick={() => setSdaFlag(!sdaFlagSelected)}>
+          Sda Flag
+        </button>
       </div>
-     
-
-
 
 
       <div className="flex w-[300px] flex-col items-end">
