@@ -25,7 +25,7 @@ const Dashboard = () => {
           <LogisticFilter
             icon={
               <MdPlace
-                className={`h-7 w-7 ${
+                className={`hover:bg-sky-700 h-7 w-7 ${
                   (LocationHovered && !clicked) || (!LocationHovered && clicked)
                     ? "text-red-500"
                     : ""
