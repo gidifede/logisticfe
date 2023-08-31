@@ -23,17 +23,19 @@ export default function Admin(props: { [x: string]: any }) {
   }, [location.pathname]);
 
   const getActiveRoute = (routes: LocalRoute[]): string | boolean => {
-    let activeRoute = "Main Dashboard";
-    for (let i = 0; i < routes.length; i++) {
-      if (
-        window.location.href.indexOf(
-          routes[i].layout + "/" + routes[i].path
-        ) !== -1
-      ) {
-        setCurrentRoute(routes[i].name);
-      }
+    const defaultRouteName = "Main Dashboard"; // Default active route name
+
+    const currentURL = location.pathname;
+    const isDetailRoute = currentURL.includes("hub-details");
+
+    if (isDetailRoute) {
+      const locationName = window.location.pathname.split("/").pop();
+      const capitalizedLocationName =
+        locationName?.charAt(0).toUpperCase() + locationName?.slice(1);
+      setCurrentRoute(`${capitalizedLocationName} Hub Details`);
     }
-    return activeRoute;
+
+    return defaultRouteName;
   };
 
   const getActiveNavbar = (routes: RoutesType[]): string | boolean => {

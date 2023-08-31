@@ -2,7 +2,6 @@ import React from "react";
 
 // Admin Imports
 import MainDashboard from "views/admin/default";
-
 import LogisticDetail from "views/admin/default/components/Logistic/LogisticDetail";
 
 const adminRoutes = [
@@ -15,7 +14,7 @@ const adminRoutes = [
     {
       name: "Hub Details",
       layout: "/admin",
-      path: "hub-details",
+      path: "hub-details/:location",
       component: <LogisticDetail />
     }
 ]
