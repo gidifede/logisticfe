@@ -5,7 +5,7 @@ import LogisticCard from "./components/Logistic/LogisticCard";
 import Widget from "components/widget/Widget";
 import { MdPlace, MdDirections, MdDirectionsCar } from "react-icons/md";
 import LogisticFilter from "./components/Logistic/LogisticFilter";
-import Card from "components/card";
+
 
 const Dashboard = () => {
   const [selectedCity, setSelectedCity] = useState(null);
@@ -56,7 +56,7 @@ const Dashboard = () => {
             clicked={sdaFlagSelected}
             onClick={handleSdaFlagSelect}
           />
-          <LogisticFilter
+          {/* <LogisticFilter
             icon={
               <img src="/filiali.png" alt="Filiali Poste" className="h-8 w-8" />
             }
@@ -67,7 +67,7 @@ const Dashboard = () => {
             icon={<img src="/pcl.png" alt="Pcl Poste" className="h-8 w-8" />}
             clicked={PclFlagSelected}
             onClick={handlPclFlagSelect}
-          />
+          /> */}
         </div>
       </div>
 

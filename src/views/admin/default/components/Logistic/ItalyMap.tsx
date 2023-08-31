@@ -3,6 +3,7 @@ import ReactTooltip from "react-tooltip";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_italyLow from "@amcharts/amcharts4-geodata/italyLow";
+import { MdPlace } from "react-icons/md";
 
 const cityData = [
   { latitude: 41.9028, longitude: 12.4964, city: "Roma",tag: "city" }, // Roma
@@ -44,17 +45,20 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showAllMarkers, sd
 
     let imageSeries = map.series.push(new am4maps.MapImageSeries());
     let imageSeriesTemplate = imageSeries.mapImages.template;
+
+    
     let marker = imageSeriesTemplate.createChild(am4core.Circle);
     marker.radius = 6;
 
     
-    if (sdaFlagSelected) {
-      marker.stroke = am4core.color(showAllMarkers ? "#4318FFFF" : "#FF00FF"); // Blu per città, viola per hub SDA
-      marker.fill = am4core.color(showAllMarkers ? "#4318FFFF" : "#FF00FF");
-    } else {
-      marker.stroke = am4core.color( "#4318FFFF"); // Blu per città
-      marker.fill = am4core.color("#4318FFFF");
-    }
+    // if (sdaFlagSelected) {
+    //   marker.stroke = am4core.color(showAllMarkers ? "#4318FFFF" : "#FF00FF"); // Blu per città, viola per hub SDA
+    //   marker.fill = am4core.color(showAllMarkers ? "#4318FFFF" : "#FF00FF");
+    // } else {
+    //   marker.stroke = am4core.color( "#4318FFFF"); // Blu per città
+    //   marker.fill = am4core.color("#4318FFFF");
+    // }
+    
 
 
     marker.tooltipHTML = "{city}";
@@ -67,9 +71,6 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showAllMarkers, sd
     });
 
 
-    
-
-  
 
     if (sdaFlagSelected && showAllMarkers) {
       imageSeries.data = cityData.concat(cityDataHubSda);
