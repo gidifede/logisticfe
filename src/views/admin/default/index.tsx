@@ -7,12 +7,14 @@ import { MdPlace, MdDirections, MdDirectionsCar } from "react-icons/md";
 import LogisticFilter from "./components/Logistic/LogisticFilter";
 import Card from "components/card";
 
+
 const Dashboard = () => {
   const [selectedCity, setSelectedCity] = useState(null);
 
   const [locationFlagSelected, setLocationFlag] = useState(true);
   const [sdaFlagSelected, setSdaFlag] = useState(false);
   const [FlagSelected, setFlag] = useState(false);
+  const [PclFlagSelected, setPclFlag] = useState(false);
   
 
   
@@ -36,25 +38,36 @@ const Dashboard = () => {
     setFlag(!FlagSelected);
   };
 
+  const handlPclFlagSelect = () => {
+    setPclFlag(!PclFlagSelected);
+  };
+
+
+
 
   return (
     <div className="mt-10 flex h-screen items-start">
       <div className="w-[120px]  p-4">
         <div className="!z-5 relative flex flex-grow flex-col items-center rounded-[20px] rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none">
           <LogisticFilter
-            icon={<MdPlace className={`h-7 w-7`} />}
+           icon={<MdPlace className={`h-7 w-7`} />}
             clicked={locationFlagSelected}
             onClick={handleLocationFlagSelect}
           />
           <LogisticFilter
-            icon={<MdDirections className={`h-7 w-7`} />}
+            icon={<img src="/sda.png" alt="Sda Poste" className="h-8 w-8"  />}
             clicked={sdaFlagSelected}
             onClick={handleSdaFlagSelect}
           />
           <LogisticFilter
-            icon={<MdDirectionsCar className={`h-7 w-7 `} />}
+            icon={<img src="/filiali.png" alt="Filiali Poste" className="h-8 w-8" />}
             clicked={FlagSelected}
             onClick={handlFlagSelect}
+          />
+          <LogisticFilter
+            icon={<img src="/pcl.png" alt="Pcl Poste" className="h-8 w-8" />}
+            clicked={PclFlagSelected}
+            onClick={handlPclFlagSelect}
           />
         </div>
       </div>
@@ -66,12 +79,6 @@ const Dashboard = () => {
           showAllMarkers={locationFlagSelected}
           sdaFlagSelected={sdaFlagSelected}
         />
-        <button onClick={() => setLocationFlag(!locationFlagSelected)}>
-          Location Flag
-        </button>
-        <button onClick={() => setSdaFlag(!sdaFlagSelected)}>
-          Sda Flag
-        </button>
       </div>
 
 
