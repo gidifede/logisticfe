@@ -13,4 +13,11 @@ declare global {
 		path: string;
 		secondary?: boolean;
 	}
+
+	interface LocalRoute {
+		name: string;
+		layout: string;
+		component:  JSX.Element;
+		path: string;
+	}
 }

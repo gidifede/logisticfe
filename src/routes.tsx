@@ -21,6 +21,7 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
+import LogisticDetail from "views/admin/default/components/Logistic/LogisticDetail";
 
 
 const routes = [
@@ -30,7 +31,7 @@ const routes = [
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
-  },
+  }, 
   // {
   //   name: "Logistic Dashboard",
   //   layout: "/admin",
@@ -75,4 +76,5 @@ const routes = [
   //   component: <RTLDefault />,
   // },
 ];
+
 export default routes;
