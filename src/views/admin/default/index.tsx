@@ -39,7 +39,6 @@ const Dashboard = () => {
   };
 
   return (
-    let a=1;
     <div className="mt-10 flex h-screen items-start">
       <div className="w-[120px]  p-4">
         <div className="!z-5 relative flex flex-grow flex-col items-center rounded-[20px] rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none">
