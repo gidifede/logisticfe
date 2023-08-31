@@ -66,6 +66,9 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showAllMarkers, sd
       setSelectedCity((clickedCityData as any).city);
     });
 
+
+    
+
   
 
     if (sdaFlagSelected && showAllMarkers) {
