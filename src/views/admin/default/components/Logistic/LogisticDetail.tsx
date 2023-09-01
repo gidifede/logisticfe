@@ -10,7 +10,7 @@ function LogisticDetail() {
     <div className="h-50 grid grid-cols-3 gap-4 mt-4"> 
       <ColumnChart></ColumnChart>
       <PieChartCardVeicoli></PieChartCardVeicoli>
-      <PieChartCard></PieChartCard>
+      <PieChartCard chartName="Macchine smistatrici" showAdditionalInfo={true}></PieChartCard>
     </div>
   );
 }

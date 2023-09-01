@@ -92,7 +92,7 @@ const Dashboard = () => {
           </div>
         )}
         <div className="self-end">
-          <PieChartCard />
+          <PieChartCard chartName="Pacchi" showAdditionalInfo={false} />
         </div>
       </div>
     </div>

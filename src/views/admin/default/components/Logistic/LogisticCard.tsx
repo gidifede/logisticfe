@@ -1,5 +1,4 @@
-import PieChart from "components/charts/PieChart";
-import { pieChartData, pieChartOptions } from "variables/charts";
+
 import { useNavigate } from "react-router-dom";
 import Card from "components/card";
 

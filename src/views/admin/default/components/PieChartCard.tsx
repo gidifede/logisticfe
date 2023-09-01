@@ -1,14 +1,22 @@
+import React, { useState } from "react";
 import PieChart from "components/charts/PieChart";
 import { pieChartData, pieChartOptions } from "variables/charts";
 import Card from "components/card";
 
-const PieChartCard = () => {
+interface PieChartCardProps {
+  chartName : string,
+  showAdditionalInfo: boolean
+}
+
+
+const PieChartCard : React.FC<PieChartCardProps> = ({ chartName, showAdditionalInfo }) => {
+
   return (
     <Card extra="rounded-[20px] p-3 " >
       <div className="flex flex-row justify-between px-3 pt-2">
         <div>
           <h4 className="text-lg font-bold text-navy-700 dark:text-white">
-            Macchine smistatrici
+            {chartName}
           </h4>
         </div>
 
@@ -51,7 +59,10 @@ const PieChartCard = () => {
           </p>
         </div>
       </div>
-      <div className="my-10 flex flex-col items-center">
+      
+      {
+        showAdditionalInfo && (
+          <div className="my-10 flex flex-col items-center">
           <p className="mb-4">
           Capacità di elaborazione giornaliera media:{" "}
             <span className="border-black border bg-white text-black px-2 py-1 rounded-full">
@@ -64,7 +75,10 @@ const PieChartCard = () => {
               20
             </span>
           </p>
-        </div>
+          </div>
+        )
+      }
+      
     </Card>
   );
 };
