@@ -20,11 +20,25 @@ class ColumnChart extends React.Component<ChartProps, ChartState> {
   }
 
   componentDidMount() {
-    this.setState({
-      chartData: this.props.chartData,
-      chartOptions: this.props.chartOptions,
-    });
+    // Simuliamo il caricamento dei dati da una fonte esterna, ad esempio una richiesta API
+    setTimeout(() => {
+      this.setState({
+        chartData: [
+          { name: "Categoria 1", data: [10, 15, 8, 12] },
+          { name: "Categoria 2", data: [5, 12, 6, 10] },
+        ],
+        chartOptions: {
+          chart: {
+            type: "bar",
+          },
+          xaxis: {
+            categories: ["Gennaio", "Febbraio", "Marzo", "Aprile"],
+          },
+        },
+      });
+    }, 1000); // Simula un ritardo di 1 secondo per il caricamento dei dati
   }
+
 
   render() {
     return (

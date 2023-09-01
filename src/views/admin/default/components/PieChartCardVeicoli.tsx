@@ -2,13 +2,15 @@ import PieChart from "components/charts/PieChart";
 import { pieChartData, pieChartOptions } from "variables/charts";
 import Card from "components/card";
 
-const PieChartCard = () => {
+
+
+const PieChartCardVeicoli = () => {
   return (
     <Card extra="rounded-[20px] p-3">
       <div className="flex flex-row justify-between px-3 pt-2">
         <div>
           <h4 className="text-lg font-bold text-navy-700 dark:text-white">
-           Macchine smistatrici
+            Veicoli
           </h4>
         </div>
 
@@ -29,7 +31,7 @@ const PieChartCard = () => {
           <div className="flex items-center justify-center">
             <div className="h-2 w-2 rounded-full bg-brand-500" />
             <p className="ml-1 text-sm font-normal text-gray-600">
-              Operative
+              Veicoli in movimento
             </p>
           </div>
           <p className="mt-px text-xl font-bold text-navy-700  dark:text-white">
@@ -43,7 +45,7 @@ const PieChartCard = () => {
           <div className="flex items-center justify-center">
             <div className="h-2 w-2 rounded-full bg-[#6AD2FF]" />
             <p className="ml-1 text-sm font-normal text-gray-600">
-              Non Opertive
+              Veicoli in caricamento
             </p>
           </div>
           <p className="mt-px text-xl font-bold text-navy-700 dark:text-white">
@@ -55,7 +57,5 @@ const PieChartCard = () => {
   );
 };
 
-
-
-export default PieChartCard;
+export default PieChartCardVeicoli;
 
