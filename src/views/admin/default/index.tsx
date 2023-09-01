@@ -6,37 +6,43 @@ import Widget from "components/widget/Widget";
 import { MdPlace, MdDirections, MdDirectionsCar } from "react-icons/md";
 import LogisticFilter from "./components/Logistic/LogisticFilter";
 
-
 const Dashboard = () => {
   const [selectedCity, setSelectedCity] = useState(null);
 
-  const [locationFlagSelected, setLocationFlag] = useState(true);
+  const [pclFlagSelected, setPclFlagSelected] = useState(true);
   const [sdaFlagSelected, setSdaFlag] = useState(false);
   const [FlagSelected, setFlag] = useState(false);
-  const [PclFlagSelected, setPclFlag] = useState(false);
+  // const [PclFlagSelected, setPclFlag] = useState(false);
 
-  const [clicked, setClicked] = useState(false);
-  const [placeFilterSelected, setPlaceFilterSelected] = useState(true);
+  const [isDetailClicked, setDetailCliked] = useState(false);
 
-  const handleChildEvent = (newMessage: string) => {
+  const handleMarkerSelection = (newMessage: string) => {
+    setDetailCliked(true)
     setSelectedCity(newMessage);
   };
 
   const handleLocationFlagSelect = () => {
-    setLocationFlag(!locationFlagSelected);
+    setPclFlagSelected(!pclFlagSelected);
+    if (!pclFlagSelected && !sdaFlagSelected) {
+      setDetailCliked(false)
+    }
   };
 
   const handleSdaFlagSelect = () => {
     setSdaFlag(!sdaFlagSelected);
+    if (!pclFlagSelected && !sdaFlagSelected) {
+      setDetailCliked(false)
+    }
   };
 
-  const handlFlagSelect = () => {
-    setFlag(!FlagSelected);
-  };
 
-  const handlPclFlagSelect = () => {
-    setPclFlag(!PclFlagSelected);
-  };
+  // const handlFlagSelect = () => {
+  //   setFlag(!FlagSelected);
+  // };
+
+  // const handlPclFlagSelect = () => {
+  //   setPclFlag(!PclFlagSelected);
+  // };
 
   return (
     <div className="mt-10 flex h-screen items-start">
@@ -44,7 +50,7 @@ const Dashboard = () => {
         <div className="!z-5 relative flex flex-grow flex-col items-center rounded-[20px] rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none">
           <LogisticFilter
             icon={<MdPlace className={`h-7 w-7`} />}
-            clicked={locationFlagSelected}
+            clicked={pclFlagSelected}
             onClick={handleLocationFlagSelect}
           />
           <LogisticFilter
@@ -73,16 +79,18 @@ const Dashboard = () => {
 
       <div className="flex-grow">
         <ItalyMap
-          setSelectedCity={handleChildEvent}
-          showAllMarkers={locationFlagSelected}
+          setSelectedCity={handleMarkerSelection}
+          showPclMarker={pclFlagSelected}
           sdaFlagSelected={sdaFlagSelected}
         />
       </div>
 
       <div className="flex w-[300px] flex-col items-end">
-        <div className="mb-10 w-[300px] self-end">
-          <LogisticCard message={selectedCity} />
-        </div>
+        {isDetailClicked && (pclFlagSelected || sdaFlagSelected) && (
+          <div className="mb-10 w-[300px] self-end">
+            <LogisticCard message={selectedCity} />
+          </div>
+        )}
         <div className="self-end">
           <PieChartCard />
         </div>

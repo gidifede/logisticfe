@@ -23,17 +23,17 @@ const cityDataHubSda = [
 
 interface ItalyMapProps {
   setSelectedCity: (message: string) => void;
-  showAllMarkers: boolean;
+  showPclMarker: boolean;
   sdaFlagSelected: boolean; // Aggiunto il flag per gli hub SDA
 }
 
-const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showAllMarkers, sdaFlagSelected }) => {
+const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showPclMarker, sdaFlagSelected }) => {
   useEffect(() => {
-    const map = initializeMap(showAllMarkers, sdaFlagSelected);
+    const map = initializeMap(showPclMarker, sdaFlagSelected);
     return () => {
       map.dispose();
     };
-  }, [showAllMarkers, sdaFlagSelected]);
+  }, [showPclMarker, sdaFlagSelected]);
 
   const initializeMap = (showAllMarkers: boolean, sdaFlagSelected: boolean) => {
     let map = am4core.create("chartdiv", am4maps.MapChart);
