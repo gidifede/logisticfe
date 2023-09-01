@@ -9,8 +9,8 @@ function LogisticDetail() {
   return (
     <div className="h-50 grid grid-cols-3 gap-4 mt-4"> 
       <ColumnChart></ColumnChart>
-      <PieChartCard></PieChartCard>
       <PieChartCardVeicoli></PieChartCardVeicoli>
+      <PieChartCard></PieChartCard>
     </div>
   );
 }

@@ -8,6 +8,9 @@ type ChartProps = {
 type ChartState = {
   chartData: any[];
   chartOptions: any;
+  numberOfPackages: number;
+  numberOfPackagesProcessed: number;
+  averageProcessingTime: number;
 };
 
 class ColumnChart extends React.Component<ChartProps, ChartState> {
@@ -16,6 +19,9 @@ class ColumnChart extends React.Component<ChartProps, ChartState> {
     this.state = {
       chartData: [],
       chartOptions: {},
+      numberOfPackages: 0,
+      numberOfPackagesProcessed: 0,
+      averageProcessingTime: 0,
     };
   }
 
@@ -35,22 +41,51 @@ class ColumnChart extends React.Component<ChartProps, ChartState> {
             categories: ["Gennaio", "Febbraio", "Marzo", "Aprile"],
           },
         },
+        numberOfPackages: 42,
+        numberOfPackagesProcessed: 35,
+        averageProcessingTime: 24,
       });
-    }, 1000); // Simula un ritardo di 1 secondo per il caricamento dei dati
+    }, ); // Simula un ritardo di 1 secondo per il caricamento dei dati
   }
 
-
+  
   render() {
     return (
-      <Chart
-        options={this.state.chartOptions}
-        series={this.state.chartData}
-        type="bar"
-        width="100%"
-        height="100%"
-      />
+      <div className="my-5">
+        <Chart
+          options={this.state.chartOptions}
+          series={this.state.chartData}
+          type="bar"
+          width="100%"
+          height="100%"
+        />
+        <div className="my-10 flex flex-col items-center">
+          <p className="mb-4">
+            Numero di pacchi attesi:{" "}
+            <span className="border-black border bg-white text-black px-2 py-1 rounded-full">
+              {this.state.numberOfPackages}
+            </span>
+          </p>
+          <p className="mb-4">
+            Numero di pacchi lavorati:{" "}
+            <span className="border-black border bg-white text-black px-2 py-1 rounded-full">
+              {this.state.numberOfPackagesProcessed}
+            </span>
+          </p>
+          <p className="mb-4">
+            Tempo medio di elaborazione:{" "}
+            <span className="border-black border bg-white text-black px-2 py-1 rounded-full">
+              {this.state.averageProcessingTime} min
+            </span>
+          </p>
+        </div>
+      </div>
     );
   }
 }
-
 export default ColumnChart;
+
+
+
+
+
