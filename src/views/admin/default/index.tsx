@@ -12,7 +12,6 @@ const Dashboard = () => {
   const [pclFlagSelected, setPclFlagSelected] = useState(true);
   const [sdaFlagSelected, setSdaFlag] = useState(false);
   const [FlagSelected, setFlag] = useState(false);
-  // const [PclFlagSelected, setPclFlag] = useState(false);
 
   const [isDetailClicked, setDetailCliked] = useState(false);
 
@@ -35,15 +34,6 @@ const Dashboard = () => {
     }
   };
 
-
-  // const handlFlagSelect = () => {
-  //   setFlag(!FlagSelected);
-  // };
-
-  // const handlPclFlagSelect = () => {
-  //   setPclFlag(!PclFlagSelected);
-  // };
-
   return (
     <div className="mt-10 flex h-screen items-start">
       <div className="w-[120px]  p-4">
@@ -62,18 +52,6 @@ const Dashboard = () => {
             clicked={sdaFlagSelected}
             onClick={handleSdaFlagSelect}
           />
-          {/* <LogisticFilter
-            icon={
-              <img src="/filiali.png" alt="Filiali Poste" className="h-8 w-8" />
-            }
-            clicked={FlagSelected}
-            onClick={handlFlagSelect}
-          />
-          <LogisticFilter
-            icon={<img src="/pcl.png" alt="Pcl Poste" className="h-8 w-8" />}
-            clicked={PclFlagSelected}
-            onClick={handlPclFlagSelect}
-          /> */}
         </div>
       </div>
 
@@ -86,14 +64,14 @@ const Dashboard = () => {
       </div>
 
       <div className="flex w-[300px] flex-col items-end">
-        {isDetailClicked && (pclFlagSelected || sdaFlagSelected) && (
-          <div className="mb-10 w-[300px] self-end">
-            <LogisticCard message={selectedCity} />
-          </div>
-        )}
         <div className="self-end">
           <PieChartCard chartName="Pacchi" showAdditionalInfo={false} />
         </div>
+        {isDetailClicked && (pclFlagSelected || sdaFlagSelected) && (
+          <div className="mb-10 w-[300px] self-end mt-5">
+            <LogisticCard message={selectedCity} />
+          </div>
+        )}
       </div>
     </div>
   );

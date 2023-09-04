@@ -46,9 +46,17 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showPclMarker, sda
     let imageSeries = map.series.push(new am4maps.MapImageSeries());
     let imageSeriesTemplate = imageSeries.mapImages.template;
 
+    let imageSeriesSda = map.series.push(new am4maps.MapImageSeries());
+    let imageSeriesSdaTemplate = imageSeriesSda.mapImages.template;
+
     
     let marker = imageSeriesTemplate.createChild(am4core.Circle);
     marker.radius = 6;
+    marker.fill = am4core.color('blue');
+
+    let markerSda = imageSeriesSdaTemplate.createChild(am4core.Circle);
+    markerSda.radius = 6;
+    markerSda.fill = am4core.color('red');
 
     
     // if (sdaFlagSelected) {
@@ -65,7 +73,16 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showPclMarker, sda
     imageSeriesTemplate.propertyFields.latitude = "latitude";
     imageSeriesTemplate.propertyFields.longitude = "longitude";
 
+    markerSda.tooltipHTML = "{city}";
+    imageSeriesSdaTemplate.propertyFields.latitude = "latitude";
+    imageSeriesSdaTemplate.propertyFields.longitude = "longitude";
+
     marker.events.on("hit", function (event) {
+      const clickedCityData = event.target.dataItem.dataContext;
+      setSelectedCity((clickedCityData as any).city);
+    });
+
+    markerSda.events.on("hit", function (event) {
       const clickedCityData = event.target.dataItem.dataContext;
       setSelectedCity((clickedCityData as any).city);
     });
@@ -73,7 +90,8 @@ const ItalyMap: React.FC<ItalyMapProps> = ({ setSelectedCity, showPclMarker, sda
 
 
     if (sdaFlagSelected && showAllMarkers) {
-      imageSeries.data = cityData.concat(cityDataHubSda);
+      imageSeries.data = cityData;
+      imageSeriesSda.data = cityDataHubSda;
     } else if (sdaFlagSelected) {
       imageSeries.data = cityDataHubSda;
     } else if (showAllMarkers || showAllMarkers) {
