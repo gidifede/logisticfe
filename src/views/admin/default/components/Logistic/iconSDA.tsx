@@ -1,7 +1,7 @@
 import React from "react";
 import { MdPlace } from "react-icons/md";
 
-function CustomMdPlaceIcon() {
+function CustomMdPlaceIconSDA() {
   return (
     <svg width="32" height="32" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* Location Pin Regular with Light Blue Border */}
@@ -11,16 +11,12 @@ function CustomMdPlaceIcon() {
         stroke="#4A58B1"
         strokeWidth="1.5"
       />
-      {/* Transparent Circle */}
-      <circle cx="12" cy="10" r="6" fill="transparent" />
-      {/* Larger Yellow Dot with PT Text */}
-      <circle cx="12" cy="10" r="6" fill="yellow" />
-      <text x="12" y="12" textAnchor="middle" dy=".3em" fontSize="9" fontWeight="bold" fill="#1A365D">
-        PT
+      <text x="12" y="12" textAnchor="middle" dy=".3em" fontSize="8" fontWeight="bold" fill="#4A58B1">
+        SDA
       </text>
     </svg>
   );
 }
 
-export default CustomMdPlaceIcon;
+export default CustomMdPlaceIconSDA;
 

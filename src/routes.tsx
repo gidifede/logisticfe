@@ -29,7 +29,7 @@ const routes = [
     name: "Main Dashboard",
     layout: "/admin",
     path: "default",
-    icon: <MdHome className="h-6 w-6" />,
+    icon: <MdHome className="h-6 w-6 text-blue-700" />,
     component: <MainDashboard />,
   }, 
   // {
@@ -50,7 +50,7 @@ const routes = [
   {
     name: "Predictive Analysis",
     layout: "/admin",
-    icon: <MdBarChart className="h-6 w-6" />,
+    icon: <MdBarChart className="h-6 w-6 text-blue-700" />,
     path: "data-tables",
     component: <DataTables />,
   },

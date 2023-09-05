@@ -6,13 +6,15 @@ import Widget from "components/widget/Widget";
 import { MdPlace, MdDirections, MdDirectionsCar } from "react-icons/md";
 import LogisticFilter from "./components/Logistic/LogisticFilter";
 import CustomMdPlaceIcon from "./components/Logistic/icons";
+import CustomMdPlaceIconSDA from "./components/Logistic/iconSDA";
+
 
 const Dashboard = () => {
   const [selectedCity, setSelectedCity] = useState(null);
 
   const [pclFlagSelected, setPclFlagSelected] = useState(true);
   const [sdaFlagSelected, setSdaFlag] = useState(false);
-  const [FlagSelected, setFlag] = useState(false);
+  // const [FlagSelected, setFlag] = useState(false);
 
   const [isDetailClicked, setDetailCliked] = useState(false);
 
@@ -39,31 +41,15 @@ const Dashboard = () => {
     <div className="mt-10 flex h-screen items-start">
       <div className="w-[120px]  p-4">
         <div className="!z-5 relative flex flex-grow flex-col items-center rounded-[20px] rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none">
-        {/* <LogisticFilter
-            icon={<img src={process.env.PUBLIC_URL + '/ptt.png'} alt="Custom Icon" className={`h-8 w-7`} />}
-            clicked={pclFlagSelected}
-            onClick={handleLocationFlagSelect}
-/> */}
 
-<LogisticFilter
+
+          <LogisticFilter
             icon={<CustomMdPlaceIcon  />}
             clicked={pclFlagSelected}
             onClick={handleLocationFlagSelect}
 />
-
-
-          {/* <LogisticFilter
-            icon={
-              <p className="leading-1 flex font-extrabold dark:text-white">
-                SDA
-              </p>
-            }
-            clicked={sdaFlagSelected}
-            onClick={handleSdaFlagSelect}
-          /> */}
-
        <LogisticFilter
-         icon={<img src={process.env.PUBLIC_URL + '/sdaa.png'} alt="Custom Icon" className={`h-8 w-7`} />}
+         icon={<CustomMdPlaceIconSDA  />}
          clicked={sdaFlagSelected}
         onClick={handleSdaFlagSelect}
 />

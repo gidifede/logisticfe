@@ -24,21 +24,18 @@ const Sidebar = (props: {
       </span>
 
       <div className={`mx-[56px] mt-[50px] flex items-center`}>
-        <div className="ml-1 mt-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
-          Poste <span className="font-medium">Italiane</span>
-        </div>
+      <div className="ml-2 mt-2 h-3">
+    <img src={process.env.PUBLIC_URL + '/logoPoste.png'} alt="Custom Icon" className={`h-20 w-35`} />
       </div>
-      <div className="mb-7 mt-[58px] h-px bg-gray-300 dark:bg-white/30" />
-      {/* Nav item */}
-
+      </div>
+    <div className="mb-7 mt-[58px] h-px bg-gray-300 dark:bg-white/30" />
+     {/* Nav item */}
       <ul className="mb-auto pt-1">
         <Links routes={routes} />
       </ul>
-
-      {/* Free Horizon Card */}
+     {/* Free Horizon Card */}
       <div className="flex justify-center"></div>
-
-      {/* Nav item end */}
+     {/* Nav item end */}
     </div>
   );
 };
