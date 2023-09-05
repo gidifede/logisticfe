@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ItalyMap from "./components/Logistic/ItalyMap";
 import PieChartCard from "./components/PieChartCard";
 import LogisticCard from "./components/Logistic/LogisticCard";
@@ -6,32 +6,48 @@ import Widget from "components/widget/Widget";
 import { MdPlace, MdDirections, MdDirectionsCar } from "react-icons/md";
 import LogisticFilter from "./components/Logistic/LogisticFilter";
 import CustomMdPlaceIcon from "./components/Logistic/icons";
+import fetchParcelData from "./components/Logistic/client/SLAPercentage";
 
 const Dashboard = () => {
   const [selectedCity, setSelectedCity] = useState(null);
-
   const [pclFlagSelected, setPclFlagSelected] = useState(true);
   const [sdaFlagSelected, setSdaFlag] = useState(false);
   const [FlagSelected, setFlag] = useState(false);
-
   const [isDetailClicked, setDetailCliked] = useState(false);
+  const [parcelData, setParcelData] = useState({
+    parcel_in_sla: 0,
+    parcel_out_sla: 0,
+  });
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await fetchParcelData();
+        setParcelData(data);
+      } catch (error) {
+        console.error("Error fetching parcel data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   const handleMarkerSelection = (newMessage: string) => {
-    setDetailCliked(true)
+    setDetailCliked(true);
     setSelectedCity(newMessage);
   };
 
   const handleLocationFlagSelect = () => {
     setPclFlagSelected(!pclFlagSelected);
     if (!pclFlagSelected && !sdaFlagSelected) {
-      setDetailCliked(false)
+      setDetailCliked(false);
     }
   };
 
   const handleSdaFlagSelect = () => {
     setSdaFlag(!sdaFlagSelected);
     if (!pclFlagSelected && !sdaFlagSelected) {
-      setDetailCliked(false)
+      setDetailCliked(false);
     }
   };
 
@@ -39,18 +55,17 @@ const Dashboard = () => {
     <div className="mt-10 flex h-screen items-start">
       <div className="w-[120px]  p-4">
         <div className="!z-5 relative flex flex-grow flex-col items-center rounded-[20px] rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none">
-        {/* <LogisticFilter
+          {/* <LogisticFilter
             icon={<img src={process.env.PUBLIC_URL + '/ptt.png'} alt="Custom Icon" className={`h-8 w-7`} />}
             clicked={pclFlagSelected}
             onClick={handleLocationFlagSelect}
 /> */}
 
-<LogisticFilter
-            icon={<CustomMdPlaceIcon  />}
+          <LogisticFilter
+            icon={<CustomMdPlaceIcon />}
             clicked={pclFlagSelected}
             onClick={handleLocationFlagSelect}
-/>
-
+          />
 
           {/* <LogisticFilter
             icon={
@@ -62,11 +77,17 @@ const Dashboard = () => {
             onClick={handleSdaFlagSelect}
           /> */}
 
-       <LogisticFilter
-         icon={<img src={process.env.PUBLIC_URL + '/sdaa.png'} alt="Custom Icon" className={`h-8 w-7`} />}
-         clicked={sdaFlagSelected}
-        onClick={handleSdaFlagSelect}
-/>
+          <LogisticFilter
+            icon={
+              <img
+                src={process.env.PUBLIC_URL + "/sdaa.png"}
+                alt="Custom Icon"
+                className={`h-8 w-7`}
+              />
+            }
+            clicked={sdaFlagSelected}
+            onClick={handleSdaFlagSelect}
+          />
         </div>
       </div>
 
@@ -80,10 +101,15 @@ const Dashboard = () => {
 
       <div className="flex w-[300px] flex-col items-end">
         <div className="self-end">
-          <PieChartCard chartName="Pacchi" showAdditionalInfo={false} />
+          <PieChartCard
+            chartName="Pacchi"
+            showAdditionalInfo={false}
+            inSlaParcels={parcelData.parcel_in_sla}
+            outOfSlaParcels={parcelData.parcel_out_sla}
+          />
         </div>
         {isDetailClicked && (pclFlagSelected || sdaFlagSelected) && (
-          <div className="mb-10 w-[300px] self-end mt-5">
+          <div className="mb-10 mt-5 w-[300px] self-end">
             <LogisticCard message={selectedCity} />
           </div>
         )}

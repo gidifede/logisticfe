@@ -45,6 +45,7 @@
     "noImplicitThis": true,
     "strictNullChecks": false,
     "downlevelIteration": true,
+    "resolveJsonModule": true,
     "baseUrl": "src",
     "paths": {
       "@assets/*": ["./src/assetsassets/*"]

@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.0.0",
+    "useDocker": true,
+    "generators": {
+      "default": {
+        "generatorName": "typescript-axios",
+        "glob": "./swagger.json",
+        "output": "./generated",
+        "ignoreFileOverride": "#{cwd}/.openapi-generator-ignore",
+        "additionalProperties": {
+          "supportsES6": true,
+          "withInterfaces": true,
+          "withSeparateModelsAndApi": true,
+          "apiPackage": "apis",
+          "modelPackage": "models"
+        }
+      }
+    }
+  }
+}
